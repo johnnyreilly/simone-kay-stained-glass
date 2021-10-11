@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Layout from "@theme/Layout";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import ImageGallery from "react-image-gallery";
+import useIsBrowser from "@docusaurus/useIsBrowser";
 
 /** @type {Map<string, Map<string, { original: string; thumbnail: string }>>} */
 const imageCache = new Map();
@@ -73,30 +74,32 @@ function MyGallery({ pictureTypeSelected }) {
   );
 }
 
-function getQueryParams() {
-  const queryParams = window.location.search
-    .substr(1)
-    .split("&")
-    .reduce(function (qs, query) {
-      const chunks = query.split("=");
-      const key = chunks[0];
-      let value = decodeURIComponent(chunks[1] || "");
-      const valueLower = value.trim().toLowerCase();
-      if (valueLower === "true" || value === "false") {
-        value = Boolean(value);
-      } else if (!isNaN(Number(value))) {
-        value = Number(value);
-      }
-      return (qs[key] = value), qs;
-    }, {});
-  return queryParams;
+function getQueryParams(/** @type boolean */ isBrowser) {
+  return isBrowser
+    ? window.location.search
+        .substr(1)
+        .split("&")
+        .reduce(function (qs, query) {
+          const chunks = query.split("=");
+          const key = chunks[0];
+          let value = decodeURIComponent(chunks[1] || "");
+          const valueLower = value.trim().toLowerCase();
+          if (valueLower === "true" || value === "false") {
+            value = Boolean(value);
+          } else if (!isNaN(Number(value))) {
+            value = Number(value);
+          }
+          return (qs[key] = value), qs;
+        }, {})
+    : {};
 }
 
 export default function Gallery() {
+  const isBrowser = useIsBrowser();
   const { siteConfig } = useDocusaurusContext();
   const pictureTypes = Array.from(imageCache.keys());
   const [pictureTypeSelected, setPictureTypeSelected] = useState(
-    () => getQueryParams()["pictureType"] || pictureTypes[0]
+    () => getQueryParams(isBrowser)["pictureType"] || pictureTypes[0]
   );
   // console.log("pictureTypes", pictureTypes);
   // console.log("pictureTypeSelected", pictureTypeSelected);
@@ -113,7 +116,12 @@ export default function Gallery() {
               }`}
               onClick={() => {
                 setPictureTypeSelected(pictureType);
-                if (history) history.pushState({pictureType}, pictureType, "?pictureType=" + pictureType)
+                if (isBrowser && history)
+                  history.pushState(
+                    { pictureType },
+                    pictureType,
+                    "?pictureType=" + pictureType
+                  );
               }}
             >
               {niceNames.get(pictureType) || pictureType}
