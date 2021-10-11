@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Layout from "@theme/Layout";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import ImageGallery from "react-image-gallery";
@@ -73,17 +73,31 @@ function MyGallery({ pictureTypeSelected }) {
   );
 }
 
+function getQueryParams() {
+  const queryParams = window.location.search
+    .substr(1)
+    .split("&")
+    .reduce(function (qs, query) {
+      const chunks = query.split("=");
+      const key = chunks[0];
+      let value = decodeURIComponent(chunks[1] || "");
+      const valueLower = value.trim().toLowerCase();
+      if (valueLower === "true" || value === "false") {
+        value = Boolean(value);
+      } else if (!isNaN(Number(value))) {
+        value = Number(value);
+      }
+      return (qs[key] = value), qs;
+    }, {});
+  return queryParams;
+}
+
 export default function Gallery() {
   const { siteConfig } = useDocusaurusContext();
   const pictureTypes = Array.from(imageCache.keys());
-  let pictureTypeSelected = "bathrooms"; // [...cache.keys()][0];
-  try {
-    pictureTypeSelected =
-      new URLSearchParams(window.location.search).get("pictureType") ||
-      pictureTypes[0];
-  } catch (e) {
-    console.error('failed to read URLSearchParams', e)
-  }
+  const [pictureTypeSelected, setPictureTypeSelected] = useState(
+    () => getQueryParams()["pictureType"] || pictureTypes[0]
+  );
   // console.log("pictureTypes", pictureTypes);
   // console.log("pictureTypeSelected", pictureTypeSelected);
 
@@ -95,12 +109,14 @@ export default function Gallery() {
             <li
               key={pictureType}
               className={`pills__item ${
-                pictureType === pictureTypeSelected
-                  ? "pills__item--active"
-                  : ""
+                pictureType === pictureTypeSelected ? "pills__item--active" : ""
               }`}
+              onClick={() => {
+                setPictureTypeSelected(pictureType);
+                if (history) history.pushState({pictureType}, pictureType, "?pictureType=" + pictureType)
+              }}
             >
-              <a href={`?pictureType=${pictureType}`}>{niceNames.get(pictureType) || pictureType}</a>
+              {niceNames.get(pictureType) || pictureType}
             </li>
           ))}
         </ul>
