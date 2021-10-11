@@ -62,11 +62,6 @@ const config = {
             position: "left",
           },
           {
-            to: "https://simonekaystainedglass.tumblr.com" /*"/blog"*/,
-            label: "Blog",
-            position: "left",
-          },
-          {
             to: "/about",
             label: "About Us",
             position: "left",
@@ -75,6 +70,21 @@ const config = {
             to: "/contact",
             label: "Contact",
             position: "left",
+          },
+          {
+            to: "Twitter",
+            label: "<a href="https://twitter.com/SimoneKay">Twitter</a>",
+            position: "right",
+          },
+          {
+            to: "https://simonekaystainedglass.tumblr.com" /*"/blog"*/,
+            label: "Tumblr",
+            position: "right",
+          },
+          {
+            to: "https://www.instagram.com/p/CUxvVXuIiP6/",
+            label: "Instagram",
+            position: "right",
           },
         ],
       },
