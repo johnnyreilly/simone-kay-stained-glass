@@ -25,7 +25,7 @@ export default function Contact() {
                 2 Fairfield Corner, Hawks Road Kingston-Upon-Thames, KT1 3BX
               </p>
 
-              <p>Follow us on <a href="https://twitter.com/SimoneKay">Twitter</a> and <a href="https://www.instagram.com/p/CUxvVXuIiP6/">Instragram</a>.</p>
+              <p>Follow us on <a href="https://twitter.com/SimoneKay">Twitter</a> and <a href="https://www.instagram.com/p/CUxvVXuIiP6/">Instagram</a>.</p>
             </div>
             <div className="col col--6">
               <iframe
