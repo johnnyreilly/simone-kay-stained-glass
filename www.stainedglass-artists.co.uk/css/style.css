@@ -1,0 +1,344 @@
+/* CSS Document */
+
+/* RESET */
+/* Global reset */
+/* Based upon 'reset.css' in the Yahoo! User Interface Library: http://developer.yahoo.com/yui */
+*, html, body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, label, fieldset, input, p, blockquote, th, td { margin:0; padding:0 }
+table { border-collapse:collapse; border-spacing:0 }
+fieldset, img { border:0 }
+address, caption, cite, code, dfn, em, strong, th, var { font-style:normal; font-weight:normal }
+ol, ul, li { list-style:none }
+caption, th { text-align:left }
+h1, h2, h3, h4, h5, h6 { font-size:100%; font-weight:normal }
+q:before, q:after { content:''}
+/* Global reset-RESET */
+/* The below restores some sensible defaults */
+strong { font-weight:bold }
+em { font-style:italic }
+a img { border:none } /* Gets rid of IE's lineOne borders */
+
+
+h2{font-weight:bold; font-size:16px;padding:0 0 5px 0;color:#131236;}
+h3{font-weight:bold; font-size:14px;padding:0 0 5px 0;color:#22205F;}
+
+p{padding:0 0 10px 0;}
+
+/*Start styling! */
+
+body
+{
+	font-family: 'lucida grande', 'Segoe UI', arial, verdana, "Courier New";
+	font-size:14px;
+	background:#22205f;
+	text-align:center;
+}
+
+.url-div{display:none;}
+
+ul.errors{background:#F33; color:#fff; border:1px solid #fff; padding:10px;}
+
+input, textarea
+{
+	width:100%;
+	resize:none;
+}
+
+.home-image-slider
+{
+	position:absolute;
+	left: 524px;
+	top: 8px;
+}
+
+.image-slider-wrap
+{
+	height:540px;
+}
+
+button.submit-button
+{
+	padding:3px 10px;
+	cursor:pointer;
+}
+
+.gallery-link
+{
+	cursor:pointer;
+}
+
+iframe
+{
+	border:1px solid #22205F;
+}
+
+#wrapper
+{
+	text-align:left;
+	margin:0 auto;
+	width:885px;
+}
+
+.space
+{
+	background-image:url(../images/rep-bg.jpg);
+	height:26px;
+}
+
+#header
+{
+	background-image:url(../images/header.jpg);
+	background-repeat:no-repeat;
+	padding:0px 0px 0px 5px;
+	height:160px;
+	position:relative;
+}
+
+#title-img
+{
+	padding:40px 0px 0px 0px;
+	float:left;
+}
+
+ul#nav-list li
+{
+	display:inline;
+	padding-right:32px;
+}
+
+ul#nav-list
+{
+	 padding:50px 0px 0px 40px;
+	 float:right;
+}
+
+ul#secondary-nav
+{
+	float:right;
+	padding:9px 34px 0 0;
+	text-align:right;
+	width:620px;
+	position:absolute;
+	right:0;
+	top:82px;
+}
+
+ul#secondary-nav li
+{
+	display:inline-block;
+	text-align:right;
+	padding:0 0 0 34px;
+	
+}
+
+ul#secondary-nav a
+{
+	color: #FF9;
+	text-decoration:none;
+}
+ul#secondary-nav a:hover
+{
+	color: #C3F;
+}
+
+
+
+#content
+{
+	background-image:url(../images/rep-bg.jpg);
+	background-repeat:repeat-y;
+	padding:0px 10px 10px 20px;
+	overflow:auto;
+	clear:both;
+	position:relative;
+}
+
+//**slideshow**//
+
+#slideshow {
+    position:relative;
+    height:540px;
+	width:350px;
+}
+ 
+#slideshow IMG {
+    position:absolute;
+    z-index:8;
+    opacity:0.0;
+}
+ 
+#slideshow IMG.active {
+    z-index:10;
+    opacity:1.0;
+}
+ 
+#slideshow IMG.last-active {
+    z-index:9;
+}
+
+
+#end
+{
+	background-image:url(../images/footer.jpg);
+	height:8px;
+	background-repeat:no-repeat;
+}
+
+.header_body
+{
+	width: 374px;
+	margin: 0 auto;
+	padding-bottom: 20px;
+	}
+	
+}
+
+.footer
+{
+	background-color:#22205f;
+	background-repeat:no-repeat;
+	padding-left:10px;
+	color:white;
+	font-size:12px;
+	width:849px;
+}
+
+.col1
+{
+	width:283px;
+	float:left;
+}
+
+
+
+.col2
+{
+	width:283px;
+	float:left;
+}
+
+.col3
+{
+	width:283px;
+	float:right;
+}
+
+.col4
+{
+	width:124px;
+	float:left;
+	color: #FFF;
+}
+
+
+.col5
+{
+	width:159px;
+	padding-left:8px;
+	float:left;
+	color: #FFF;
+}
+
+.col6
+{
+	width:283px;
+	float:left;
+	text-align:center;
+	font-size:42;
+}
+
+.col7
+{
+	padding-right: 25px;
+	width:283px;
+	text-align:right;
+	float:right;
+}
+
+
+.contentcol1
+{
+	width:400px;
+	float:left;
+	padding-right:25px;
+}
+
+.contentcol2
+{
+	width:400px;
+	float:right;
+	padding-right:25px;
+}
+
+.h1
+{
+	padding-left: 24px;
+	font-size: 16px;
+	color:#C3C;
+}
+
+.h3
+{
+	text-align:center;
+	color:#FFF;
+}
+
+.h4
+{
+	font-size: 11px;
+	color:#666;
+}
+
+.footlink
+{
+	font-size: 14px;
+	font-family: 'lucida grande', 'Segoe UI', arial, verdana, "Courier New";
+	text-decoration:none;
+	color:#FF9;
+}
+
+.footlink:hover
+{
+	color:#C3F;
+}
+	
+.footlink_b
+{
+	font-size: 10px;
+	font-family: 'lucida grande', 'Segoe UI', arial, verdana, "Courier New";
+	color:#666;
+}
+
+.footlink_b:hover
+{
+	color:#CCC;
+}
+
+li.tumblr_post{padding:0 0 30px 0;}
+li.tumblr_post:nth-child(odd) {float:left; width:400px;clear:both;}
+li.tumblr_post:nth-child(even) {width:400px;float:right;padding:0 20px 30px 0;}
+
+ul.gallery
+{
+	text-align:center;
+}
+ul.gallery li
+{
+	text-align:center;
+	display:inline;
+}
+
+ul.gallery li img
+{
+	border:1px solid #22205F;
+	margin:5px;
+	padding:5px; 
+}
+
+.about-us-content{padding:0 45px;}
+
+.about-left{float:left; width:340px;}
+.about-right{float:right; width:340px;}
+.clear{clear:both;}
+
+.about-us-content .clear{padding:0 0 10px 0;}
+.blog_url{font-style:italic;text-align:center;}
