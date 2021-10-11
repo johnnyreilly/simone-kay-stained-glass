@@ -100,6 +100,10 @@ const config = {
                 href: "mailto:simonekaystainedglass@gmail.com",
               },
               {
+                label: "@SimoneKay",
+                href: "https://twitter.com/SimoneKay",
+              },
+              {
                 html: "2 Fairfield Corner, Hawks Road, Kingston-Upon-Thames, KT1 3BX",
               },
             ],
