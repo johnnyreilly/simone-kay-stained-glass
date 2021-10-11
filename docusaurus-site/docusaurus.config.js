@@ -72,8 +72,8 @@ const config = {
             position: "left",
           },
           {
-            to: "Twitter",
-            label: "<a href="https://twitter.com/SimoneKay">Twitter</a>",
+            to: "https://twitter.com/SimoneKay",
+            label: "Twitter",
             position: "right",
           },
           {
