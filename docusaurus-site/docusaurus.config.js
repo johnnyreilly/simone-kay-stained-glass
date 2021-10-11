@@ -68,7 +68,12 @@ const config = {
           },
           {
             to: "/about",
-            label: "About",
+            label: "About Us",
+            position: "left",
+          },
+          {
+            to: "/contact",
+            label: "Contact",
             position: "left",
           },
         ],
