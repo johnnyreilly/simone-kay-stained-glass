@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import Layout from "@theme/Layout";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import ImageGallery from "react-image-gallery";
-import useIsBrowser from "@docusaurus/useIsBrowser";
 
 /** @type {Map<string, Map<string, { original: string; thumbnail: string }>>} */
 const imageCache = new Map();
@@ -50,11 +49,6 @@ function getGalleryImages(r) {
 getGalleryImages(require.context("../../static/img/gallery", true, /\.jpg$/));
 
 function MyGallery({ pictureTypeSelected }) {
-  // console.log("cache", cache);
-  // console.log(
-  //   `cache.get(${pictureTypeSelected})`,
-  //   cache.get(pictureTypeSelected)
-  // );
   const imagesToDisplay = imageCache.has(pictureTypeSelected)
     ? Array.from(imageCache.get(pictureTypeSelected).values())
     : [];
@@ -79,7 +73,7 @@ function getQueryParams(/** @type boolean */ isBrowser) {
     ? window.location.search
         .substr(1)
         .split("&")
-        .reduce(function (qs, query) {
+        .reduce((qs, query) => {
           const chunks = query.split("=");
           const key = chunks[0];
           let value = decodeURIComponent(chunks[1] || "");
@@ -95,14 +89,20 @@ function getQueryParams(/** @type boolean */ isBrowser) {
 }
 
 export default function Gallery() {
-  const isBrowser = useIsBrowser();
+  const [hasMounted, setHasMounted] = React.useState(false);
+  React.useEffect(() => {
+    setHasMounted(true);
+    const queryParams = getQueryParams(true);
+    setPictureTypeSelected(
+      queryParams["pictureType"] || pictureTypes[0]
+    );
+  }, []);
+
   const { siteConfig } = useDocusaurusContext();
   const pictureTypes = Array.from(imageCache.keys());
   const [pictureTypeSelected, setPictureTypeSelected] = useState(
-    () => getQueryParams(isBrowser)["pictureType"] || pictureTypes[0]
+    pictureTypes[0]
   );
-  // console.log("pictureTypes", pictureTypes);
-  // console.log("pictureTypeSelected", pictureTypeSelected);
 
   return (
     <Layout title={siteConfig.title} description={siteConfig.description}>
@@ -116,7 +116,7 @@ export default function Gallery() {
               }`}
               onClick={() => {
                 setPictureTypeSelected(pictureType);
-                if (isBrowser && history)
+                if (hasMounted && history)
                   history.pushState(
                     { pictureType },
                     pictureType,
