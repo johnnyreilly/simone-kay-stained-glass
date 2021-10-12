@@ -1,0 +1,19 @@
+{
+  "name": "simone-kay-stained-glass",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/johnnyreilly/simone-kay-stained-glass.git",
+  "author": "johnnyreilly <johnny_reilly@hotmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "prepare": "husky install"
+  },
+  "devDependencies": {
+    "husky": "^7.0.0",
+    "lint-staged": "^11.1.2",
+    "prettier": "^2.4.1"
+  },
+  "lint-staged": {
+    "docusaurus-site/**/*": "prettier --write --ignore-unknown"
+  }
+}
