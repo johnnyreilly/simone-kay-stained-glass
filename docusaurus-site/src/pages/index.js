@@ -28,7 +28,7 @@ const images = [
   originalAlt: `photograph of stained glass window`,
 }));
 
-function MyGallery() {
+function HomeGallery() {
   return (
     <ImageGallery
       items={images}
@@ -74,7 +74,7 @@ export default function Home() {
               </div>
             </div>
             <div className={clsx("col", "col--5", "hero-primary")}>
-              <MyGallery />
+              <HomeGallery />
             </div>
           </div>
         </div>
