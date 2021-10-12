@@ -6,6 +6,7 @@ import ImageGallery from "react-image-gallery";
 /** @type {Map<string, Map<string, { original: string; thumbnail: string }>>} */
 const imageCache = new Map();
 
+/** @type {Map<string, string>} */
 const niceNames = new Map([
   ["ecclesiastical", "Ecclesiastical"],
   ["frontages", "Frontages"],
@@ -48,16 +49,18 @@ function getGalleryImages(r) {
 
 getGalleryImages(require.context("../../static/img/gallery", true, /\.jpg$/));
 
-function MyGallery({ pictureTypeSelected }) {
+function StainedGlassGallery({ pictureTypeSelected }) {
   const imagesToDisplay = imageCache.has(pictureTypeSelected)
-    ? Array.from(imageCache.get(pictureTypeSelected).values())
+    ? Array.from(imageCache.get(pictureTypeSelected).entries())
     : [];
-  const images = imagesToDisplay.map(({ original, thumbnail }) => ({
+  const images = imagesToDisplay.map(([name, { original, thumbnail }]) => ({
     original,
     originalHeight: 500,
     thumbnail,
+    originalAlt: `photograph of ${name}`,
+    thumbnailAlt: `thumbnail photograph of ${name}`,
   }));
-  // console.log('images', images)
+
   return (
     <ImageGallery
       items={images}
@@ -68,34 +71,12 @@ function MyGallery({ pictureTypeSelected }) {
   );
 }
 
-function getQueryParams(/** @type boolean */ isBrowser) {
-  return isBrowser
-    ? window.location.search
-        .substr(1)
-        .split("&")
-        .reduce((qs, query) => {
-          const chunks = query.split("=");
-          const key = chunks[0];
-          let value = decodeURIComponent(chunks[1] || "");
-          const valueLower = value.trim().toLowerCase();
-          if (valueLower === "true" || value === "false") {
-            value = Boolean(value);
-          } else if (!isNaN(Number(value))) {
-            value = Number(value);
-          }
-          return (qs[key] = value), qs;
-        }, {})
-    : {};
-}
-
 export default function Gallery() {
   const [hasMounted, setHasMounted] = React.useState(false);
   React.useEffect(() => {
     setHasMounted(true);
-    const queryParams = getQueryParams(true);
-    setPictureTypeSelected(
-      queryParams["pictureType"] || pictureTypes[0]
-    );
+    const queryParams = new URLSearchParams(window.location.search);
+    setPictureTypeSelected(queryParams.get("pictureType") || pictureTypes[0]);
   }, []);
 
   const { siteConfig } = useDocusaurusContext();
@@ -129,7 +110,7 @@ export default function Gallery() {
           ))}
         </ul>
 
-        <MyGallery pictureTypeSelected={pictureTypeSelected} />
+        <StainedGlassGallery pictureTypeSelected={pictureTypeSelected} />
       </main>
     </Layout>
   );
