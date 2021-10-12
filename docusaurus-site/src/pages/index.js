@@ -22,7 +22,11 @@ const images = [
   slider5,
   slider6,
   slider7,
-].map((img) => ({ original: img, originalHeight: 500 }));
+].map((img) => ({
+  original: img,
+  originalHeight: 500,
+  originalAlt: `photograph of stained glass window`,
+}));
 
 function MyGallery() {
   return (
