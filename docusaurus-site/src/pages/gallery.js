@@ -92,9 +92,9 @@ export default function Gallery() {
   const [hasMounted, setHasMounted] = React.useState(false);
   React.useEffect(() => {
     setHasMounted(true);
-    const queryParams = getQueryParams(true);
+    const queryParams = new URLSearchParams(window.location.search);
     setPictureTypeSelected(
-      queryParams["pictureType"] || pictureTypes[0]
+      queryParams.get("pictureType") || pictureTypes[0]
     );
   }, []);
 

@@ -1,10 +1,8 @@
 import React from "react";
 import clsx from "clsx";
 import Layout from "@theme/Layout";
-import Link from "@docusaurus/Link";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import styles from "./index.module.css";
-import HomepageFeatures from "../components/HomepageFeatures";
 import ImageGallery from "react-image-gallery";
 import titleImage from "../../static/img/Simone_Kay_Stained_Glass_Logo_white_text_transparent.png";
 
@@ -15,7 +13,6 @@ import slider4 from "../../static/img/home/slider-4.jpg";
 import slider5 from "../../static/img/home/slider-5.jpg";
 import slider6 from "../../static/img/home/slider-6.jpg";
 import slider7 from "../../static/img/home/slider-7.jpg";
-
 
 const images = [
   slider1,
@@ -41,11 +38,8 @@ function MyGallery() {
 export default function Home() {
   const { siteConfig } = useDocusaurusContext();
   return (
-    <Layout
-      title={siteConfig.title}
-      description={siteConfig.description}
-    >
-      <main style={{marginBottom: '2rem'}}>
+    <Layout title={siteConfig.title} description={siteConfig.description}>
+      <main style={{ marginBottom: "2rem" }}>
         <div className={clsx("container", styles.heroBanner)}>
           <div className="row">
             <div className={clsx("col", "col--7")}>
@@ -80,8 +74,6 @@ export default function Home() {
             </div>
           </div>
         </div>
-
-        {/* <HomepageFeatures /> */}
       </main>
     </Layout>
   );

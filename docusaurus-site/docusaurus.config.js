@@ -9,7 +9,8 @@ const config = {
   title: "Simone Kay Stained Glass",
   tagline: "Bespoke stained glass",
   url: "https://johnnyreilly.github.io",
-  baseUrl: "/simone-kay-stained-glass/",
+  // baseUrl: "/simone-kay-stained-glass/",
+  baseUrl: "/", // for previews with Netlify
   trailingSlash: true,
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
