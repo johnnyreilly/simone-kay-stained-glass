@@ -6,6 +6,7 @@ import ImageGallery from "react-image-gallery";
 /** @type {Map<string, Map<string, { original: string; thumbnail: string }>>} */
 const imageCache = new Map();
 
+/** @type {Map<string, string>} */
 const niceNames = new Map([
   ["ecclesiastical", "Ecclesiastical"],
   ["frontages", "Frontages"],
@@ -48,7 +49,7 @@ function getGalleryImages(r) {
 
 getGalleryImages(require.context("../../static/img/gallery", true, /\.jpg$/));
 
-function MyGallery({ pictureTypeSelected }) {
+function StainedGlassGallery({ pictureTypeSelected }) {
   const imagesToDisplay = imageCache.has(pictureTypeSelected)
     ? Array.from(imageCache.get(pictureTypeSelected).entries())
     : [];
@@ -59,7 +60,7 @@ function MyGallery({ pictureTypeSelected }) {
     originalAlt: `photograph of ${name}`,
     thumbnailAlt: `thumbnail photograph of ${name}`,
   }));
-  // console.log('images', images)
+
   return (
     <ImageGallery
       items={images}
@@ -75,9 +76,7 @@ export default function Gallery() {
   React.useEffect(() => {
     setHasMounted(true);
     const queryParams = new URLSearchParams(window.location.search);
-    setPictureTypeSelected(
-      queryParams.get("pictureType") || pictureTypes[0]
-    );
+    setPictureTypeSelected(queryParams.get("pictureType") || pictureTypes[0]);
   }, []);
 
   const { siteConfig } = useDocusaurusContext();
@@ -111,7 +110,7 @@ export default function Gallery() {
           ))}
         </ul>
 
-        <MyGallery pictureTypeSelected={pictureTypeSelected} />
+        <StainedGlassGallery pictureTypeSelected={pictureTypeSelected} />
       </main>
     </Layout>
   );
